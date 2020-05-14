@@ -1,103 +1,64 @@
 import * as vscode from "vscode";
 
-let documentType: vscode.DocumentSelector = [
+const documentType: vscode.DocumentSelector = [
   { scheme: "file", language: "javascript" },
   { scheme: "file", language: "javascriptreact" },
   { scheme: "file", language: "typescriptreact" },
+  { scheme: "file", language: "typescript" },
 ];
 
+const reTrigger = {
+  command: "editor.action.triggerSuggest",
+  title: "Re-trigger completions...",
+};
+
 export function activate(context: vscode.ExtensionContext) {
-  let provider1 = vscode.languages.registerCompletionItemProvider(
-    documentType,
-    {
-      provideCompletionItems(
-        document: vscode.TextDocument,
-        position: vscode.Position,
-        token: vscode.CancellationToken,
-        context: vscode.CompletionContext
-      ) {
-        // a simple completion item which inserts `Hello World!`
-        const simpleCompletion = new vscode.CompletionItem("Hello World!");
-
-        // a completion item that inserts its text as snippet,
-        // the `insertText`-property is a `SnippetString` which will be
-        // honored by the editor.
-        const snippetCompletion = new vscode.CompletionItem(
-          "Good part of the day"
-        );
-        snippetCompletion.insertText = new vscode.SnippetString(
-          "Good ${1|morning,afternoon,evening|}. It is ${1}, right?"
-        );
-        snippetCompletion.documentation = new vscode.MarkdownString(
-          "Inserts a snippet that lets you select the _appropriate_ part of the day for your greeting."
-        );
-
-        // a completion item that can be accepted by a commit character,
-        // the `commitCharacters`-property is set which means that the completion will
-        // be inserted and then the character will be typed.
-        const commitCharacterCompletion = new vscode.CompletionItem("console");
-        commitCharacterCompletion.commitCharacters = ["."];
-        commitCharacterCompletion.documentation = new vscode.MarkdownString(
-          "Press `.` to get `console.`"
-        );
-
-        // a completion item that retriggers IntelliSense when being accepted,
-        // the `command`-property is set which the editor will execute after
-        // completion has been inserted. Also, the `insertText` is set so that
-        // a space is inserted after `new`
-        const commandCompletion = new vscode.CompletionItem("new");
-        commandCompletion.kind = vscode.CompletionItemKind.Keyword;
-        commandCompletion.insertText = "new ";
-        commandCompletion.command = {
-          command: "editor.action.triggerSuggest",
-          title: "Re-trigger completions...",
-        };
-
-        // return all completion items as array
-        return [
-          simpleCompletion,
-          snippetCompletion,
-          commitCharacterCompletion,
-          commandCompletion,
-        ];
-      },
-    }
-  );
-
-  const provider2 = vscode.languages.registerCompletionItemProvider(
+  const provider = vscode.languages.registerCompletionItemProvider(
     documentType,
     {
       provideCompletionItems(
         document: vscode.TextDocument,
         position: vscode.Position
       ) {
-        // get all text until the `position` and check if it reads `console.`
-        // and if so then complete if `log`, `warn`, and `error`
         let linePrefix = document
           .lineAt(position)
           .text.substr(0, position.character);
-        if (!linePrefix.endsWith("tw`")) {
+
+        console.log(linePrefix);
+
+        /* Use regex */
+        if (!linePrefix.includes(`tw\``)) {
           return undefined;
         }
 
-        return [
-          new vscode.CompletionItem(
-            "absolute",
-            vscode.CompletionItemKind.Value
-          ),
-          new vscode.CompletionItem(
-            "text-white",
-            vscode.CompletionItemKind.Value
-          ),
-          new vscode.CompletionItem(
-            "pointer-events-none",
-            vscode.CompletionItemKind.Value
-          ),
-        ];
+        /* Will be dynamic */
+        const absolute = new vscode.CompletionItem(
+          "absolute",
+          vscode.CompletionItemKind.Value
+        );
+
+        const text = new vscode.CompletionItem(
+          "text-white",
+          vscode.CompletionItemKind.Value
+        );
+
+        const pointerNoEvent = new vscode.CompletionItem(
+          "pointer-events-none",
+          vscode.CompletionItemKind.Value
+        );
+
+        pointerNoEvent.documentation = new vscode.MarkdownString(
+          `Pointer Events docs: https://tailwindcss.com/docs/pointer-events/`
+        );
+
+        absolute.command = reTrigger;
+        pointerNoEvent.command = reTrigger;
+        text.command = reTrigger;
+
+        return [absolute, text, pointerNoEvent];
       },
-    },
-    "." // triggered whenever a '.' is being typed
+    }
   );
 
-  context.subscriptions.push(provider1, provider2);
+  context.subscriptions.push(provider);
 }
