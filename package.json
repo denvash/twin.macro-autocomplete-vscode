@@ -1,14 +1,14 @@
 {
-  "name": "vscode-twin-macro-autocomplete",
-  "displayName": "Auto complete for twin.macro",
+  "name": "twin-macro-autocomplete-vscode",
+  "displayName": "twin.macro Auto Complete",
   "version": "0.0.3",
   "publisher": "DennisVash",
   "repository": {
     "type": "git",
-    "url": "https://github.com/denvash/tailwind-macro-autocomplete-poc"
+    "url": "https://github.com/denvash/twin.macro-autocomplete-vscode"
   },
   "bugs": {
-    "url": "https://github.com/denvash/tailwind-macro-autocomplete-poc/issues"
+    "url": "https://github.com/denvash/twin.macro-autocomplete-vscode/issues"
   },
   "engines": {
     "vscode": "^1.32.0"
