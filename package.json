@@ -2,7 +2,7 @@
   "name": "vscode-twin-macro-autocomplete",
   "displayName": "Auto complete for twin.macro",
   "version": "0.0.3",
-  "publisher": "denvash",
+  "publisher": "DennisVash",
   "repository": {
     "type": "git",
     "url": "https://github.com/denvash/tailwind-macro-autocomplete-poc"
