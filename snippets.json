@@ -1,0 +1,7 @@
+{
+  "Print to console": {
+    "prefix": "tw",
+    "body": ["tw`$1`"],
+    "description": "twin.macro"
+  }
+}
