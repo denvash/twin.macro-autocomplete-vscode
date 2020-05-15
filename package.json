@@ -5,10 +5,10 @@
   "publisher": "denvash",
   "repository": {
     "type": "git",
-    "url": "https://github.com/denvash/vscode-twin.macro-autocomplete"
+    "url": "https://github.com/denvash/tailwind-macro-autocomplete-poc"
   },
   "bugs": {
-    "url": "https://github.com/denvash/vscode-twin.macro-autocomplete"
+    "url": "https://github.com/denvash/tailwind-macro-autocomplete-poc/issues"
   },
   "engines": {
     "vscode": "^1.32.0"
