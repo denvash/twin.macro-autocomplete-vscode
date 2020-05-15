@@ -1,7 +1,7 @@
 {
   "name": "vscode-twin-macro-autocomplete",
   "displayName": "Auto complete for twin.macro",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "denvash",
   "repository": {
     "type": "git",
@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@types/node": "^12.12.0",
-    "typescript": "^3.8.3",
-    "@types/vscode": "^1.32.0"
+    "@types/vscode": "^1.32.0",
+    "typescript": "^3.8.3"
   }
 }
