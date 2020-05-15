@@ -1,7 +1,7 @@
 {
   "name": "twin-macro-autocomplete-vscode",
   "displayName": "twin.macro Auto Complete",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "publisher": "DennisVash",
   "repository": {
     "type": "git",
@@ -57,5 +57,6 @@
     "prettier": "^2.0.5",
     "twin.macro": "^1.0.0",
     "typescript": "^3.8.3"
-  }
+  },
+  "license": "MIT"
 }
