@@ -20,7 +20,7 @@ export function activate(context: vscode.ExtensionContext) {
         document: vscode.TextDocument,
         position: vscode.Position
       ) {
-        let linePrefix = document
+        const linePrefix = document
           .lineAt(position)
           .text.substr(0, position.character);
 
